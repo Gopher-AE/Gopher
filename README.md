@@ -1,7 +1,9 @@
-# Gopher
+# Gopher: Efficient Dynamic Graph Pattern Mining System via DAG-Driven Execution
 ### Gopher Implementation
 
 How to run on a single machine
+
+A quick start example
 
 ```
 $ cd Gopher

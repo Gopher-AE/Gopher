@@ -1,0 +1,10 @@
+^D:\STUDY\GITWORK\GOPHER\CMAKELISTS.TXT
+setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SD:/Study/gitwork/Gopher -BD:/Study/gitwork/Gopher/build --check-stamp-file D:/Study/gitwork/Gopher/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

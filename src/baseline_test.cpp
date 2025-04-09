@@ -2,6 +2,9 @@
 #include "../include/mappings.h"
 #include "../include/dag.h"
 #include "../include/mining.h"
+// #include "../include/instance_restoration.h"
+// #include "../include/task_manager.h"
+// #include "../include/mongodb_utils.h"
 #include <assert.h>
 #include <iostream>
 #include <string>

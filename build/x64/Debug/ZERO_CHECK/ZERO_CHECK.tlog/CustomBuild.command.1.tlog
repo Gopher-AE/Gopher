@@ -1,0 +1,10 @@
+^D:\STUDY\GITWORK\GOPHER\BUILD\CMAKEFILES\B61B05B768CC69F8ECE7D53FEB557D66\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SD:/Study/gitwork/Gopher -BD:/Study/gitwork/Gopher/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/Study/gitwork/Gopher/build/Gopher.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
