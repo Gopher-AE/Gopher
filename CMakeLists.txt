@@ -16,6 +16,7 @@ set(SOURCES
     src/dag.cpp
     src/mining.cpp
     src/baseline_test.cpp
+    src/code_generation.cpp
 )
 
 
