@@ -35,7 +35,6 @@ Schedule::~Schedule()
 void Schedule::generate_schedules(int *reorderschedule) const{
     const int* curr_adj = adj_mat;
 
-    // 找到包含边值2的两行
     int row1 = -1, row2 = -1;
     for(int x = 0; x < size; ++x) {
         for(int y = 0; y < size; ++y) {

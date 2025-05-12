@@ -189,7 +189,6 @@ void CodeGeneration::mergeSimilarOperations(std::vector<std::shared_ptr<CodeBloc
         for (size_t j = i + 1; j < blocks.size(); ++j) {
             if (blocks[i]->type == blocks[j]->type &&
                 blocks[i]->type == CodeBlockType::SEQUENTIAL) {
-                // 合并相似的操作
                 if (blocks[i]->code.size() == blocks[j]->code.size()) {
                     bool similar = true;
                     for (size_t k = 0; k < blocks[i]->code.size(); ++k) {

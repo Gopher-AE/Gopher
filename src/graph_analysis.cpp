@@ -55,8 +55,8 @@ std::vector<int> GraphAnalysis::getDegrees() const {
     for (int i = 0; i < size; ++i) {
         for (int j = 0; j < size; ++j) {
             if (adj_matrix[i * size + j] > 0) {
-                ++degrees[i];  // 出度
-                ++degrees[j];  // 入度
+                ++degrees[i];  
+                ++degrees[j];  
             }
         }
     }
@@ -70,14 +70,12 @@ std::vector<int> GraphAnalysis::findLongestPath() const {
     std::vector<bool> visited(size, false);
     std::vector<int> order;
     
-    // 拓扑排序
     for (int i = 0; i < size; ++i) {
         if (!visited[i]) {
             topologicalSort(i, visited, order);
         }
     }
     
-    // 找最长路径
     dist[order[0]] = 0;
     for (int u : order) {
         for (int v : adjacency_list_[u]) {
@@ -88,7 +86,6 @@ std::vector<int> GraphAnalysis::findLongestPath() const {
         }
     }
     
-    // 构建路径
     std::vector<int> path;
     int max_dist_vertex = std::max_element(dist.begin(), dist.end()) - dist.begin();
     for (int v = max_dist_vertex; v != -1; v = parent[v]) {
@@ -99,7 +96,7 @@ std::vector<int> GraphAnalysis::findLongestPath() const {
 }
 
 std::vector<int> GraphAnalysis::findCriticalPath() const {
-    return findLongestPath();  // 在DAG中，最长路径就是关键路径
+    return findLongestPath(); 
 }
 
 std::map<int, int> GraphAnalysis::getShortestDistances(int source) const {
@@ -134,15 +131,12 @@ bool GraphAnalysis::isStronglyConnected() const {
     int size = dag_.get_size();
     std::vector<bool> visited(size, false);
     
-    // 从第一个顶点开始DFS
     dfs(0, visited, std::vector<int>());
     
-    // 检查是否所有顶点都被访问
     if (std::find(visited.begin(), visited.end(), false) != visited.end()) {
         return false;
     }
     
-    // 检查转置图
     std::vector<std::vector<int>> transpose(size);
     for (int i = 0; i < size; ++i) {
         for (int j : adjacency_list_[i]) {
@@ -163,7 +157,6 @@ std::vector<std::set<int>> GraphAnalysis::getStronglyConnectedComponents() const
     std::vector<bool> visited(size, false);
     std::stack<int> stack;
     
-    // 第一次DFS，填充栈
     for (int i = 0; i < size; ++i) {
         if (!visited[i]) {
             std::vector<int> temp_path;
@@ -172,7 +165,6 @@ std::vector<std::set<int>> GraphAnalysis::getStronglyConnectedComponents() const
         }
     }
     
-    // 创建转置图
     std::vector<std::vector<int>> transpose(size);
     for (int i = 0; i < size; ++i) {
         for (int j : adjacency_list_[i]) {
@@ -180,7 +172,6 @@ std::vector<std::set<int>> GraphAnalysis::getStronglyConnectedComponents() const
         }
     }
     
-    // 第二次DFS
     std::fill(visited.begin(), visited.end(), false);
     while (!stack.empty()) {
         int v = stack.top();
@@ -218,7 +209,7 @@ std::vector<std::set<int>> GraphAnalysis::findCycles() const {
                         parent[u] = v;
                         dfs_cycle(u);
                     } else if (in_current_path[u]) {
-                        // 找到环
+
                         std::set<int> cycle;
                         for (int curr = v; curr != u; curr = parent[curr]) {
                             cycle.insert(curr);
@@ -241,7 +232,6 @@ std::vector<std::set<int>> GraphAnalysis::findCycles() const {
 std::vector<GraphAnalysis::OptimizationSuggestion> GraphAnalysis::analyzeForOptimization() const {
     std::vector<OptimizationSuggestion> suggestions;
     
-    // 分析并行度
     auto levels = getExecutionLevels();
     if (levels.size() > 1) {
         for (size_t i = 0; i < levels.size(); ++i) {
@@ -256,7 +246,6 @@ std::vector<GraphAnalysis::OptimizationSuggestion> GraphAnalysis::analyzeForOpti
         }
     }
     
-    // 分析瓶颈
     auto degrees = getDegrees();
     for (int i = 0; i < getVertexCount(); ++i) {
         if (degrees[i] > getVertexCount() / 2) {
@@ -292,21 +281,18 @@ std::vector<std::vector<int>> GraphAnalysis::getExecutionLevels() const {
     std::vector<int> in_degree(size, 0);
     std::queue<int> q;
     
-    // 计算入度
     for (int i = 0; i < size; ++i) {
         for (int j : adjacency_list_[i]) {
             ++in_degree[j];
         }
     }
     
-    // 将入度为0的顶点加入队列
     for (int i = 0; i < size; ++i) {
         if (in_degree[i] == 0) {
             q.push(i);
         }
     }
     
-    // BFS遍历
     while (!q.empty()) {
         int level_size = q.size();
         std::vector<int> current_level;
@@ -332,14 +318,11 @@ std::vector<std::vector<int>> GraphAnalysis::getExecutionLevels() const {
 GraphAnalysis::PerformanceMetrics GraphAnalysis::estimatePerformance() const {
     PerformanceMetrics metrics;
     
-    // 估算关键路径长度
     auto critical_path = findCriticalPath();
     metrics.critical_path_length = critical_path.size();
     
-    // 估算执行时间
     metrics.estimated_execution_time = critical_path.size() * calculateNodeComplexity(critical_path[0]);
     
-    // 估算并行化潜力
     auto levels = getExecutionLevels();
     double max_parallel = 0;
     for (const auto& level : levels) {
@@ -347,7 +330,6 @@ GraphAnalysis::PerformanceMetrics GraphAnalysis::estimatePerformance() const {
     }
     metrics.parallelization_potential = max_parallel / getVertexCount();
     
-    // 识别瓶颈
     auto degrees = getDegrees();
     for (int i = 0; i < getVertexCount(); ++i) {
         if (degrees[i] > getVertexCount() / 2) {

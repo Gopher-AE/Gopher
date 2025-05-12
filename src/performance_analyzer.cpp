@@ -267,7 +267,6 @@ void PerformanceAnalyzer::updateMetrics() {
     PerformanceMetrics current_metrics;
     auto current_time = std::chrono::steady_clock::now();
     
-    // 计算执行时间
     current_metrics.execution_time = 
         std::chrono::duration<double>(current_time - start_time_).count();
     

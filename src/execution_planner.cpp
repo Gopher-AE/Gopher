@@ -62,7 +62,6 @@ ExecutionPlanner::ExecutionPlan ExecutionPlanner::generateOptimizedPlan() {
     optimizeTaskOrder(plan.execution_stages[0]); 
     balanceResources(plan);                      
     
-    // 添加优化说明
     if (plan.max_parallel_tasks > constraints_.max_parallel_tasks) {
         plan.optimization_notes.push_back(
             "Warning: Plan exceeds maximum parallel task limit");
