@@ -7,16 +7,12 @@ std::vector<std::string> CodeGeneration::generateCode(const DAG& dag) {
     int size = dag.get_size();
     const int* adj_matrix = dag.get_adj_matrix();
 
-    // 遍历每个顶点
     for (int i = 0; i < size; ++i) {
-        // 获取当前顶点的邻居
         std::set<int> neighbors = getNeighbors(dag, i);
         
-        // 生成当前顶点的代码
         std::string vertex_code = generateVertexCode(dag, i, neighbors);
         code.push_back(vertex_code);
 
-        // 如果有多个邻居，生成交集操作
         if (neighbors.size() > 1) {
             std::set<int> intersection;
             bool first = true;
