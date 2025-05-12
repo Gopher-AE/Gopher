@@ -17,6 +17,9 @@ set(SOURCES
     src/mining.cpp
     src/baseline_test.cpp
     src/code_generation.cpp
+    src/graph_analysis.cpp
+    src/execution_planner.cpp
+    src/performance_analyzer.cpp
 )
 
 
