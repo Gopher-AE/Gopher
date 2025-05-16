@@ -126,7 +126,7 @@ Example:
 
 **1. Schedule Generation**
 
-- Implemented in generate_permutations()
+- Implemented in `generate_permutations()`
 
 - Follows specific rules for valid mining schedules
 
