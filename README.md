@@ -87,7 +87,7 @@ Example:
 
 **3. Input File Formats**
 
-**Graph File Format** (`example.txt`):
+**Graph File Format** (`wiki-talk-temporal-static.txt`):
 
 ```
 # Each line represents an edge: <source_vertex> <target_vertex>
@@ -116,7 +116,7 @@ Example:
 ...
 ```
 
-**Updates File Format** (`updates.txt`):
+**Updates File Format** (`wiki-talk-temporal-updates.txt`):
 
 ```
 # Each line represents a new edge to be added
