@@ -40,7 +40,7 @@ Gopher is an efficient dynamic graph pattern mining system that uses DAG-driven 
 
 - Core class: `DAG`
 
-- Purpose: Handles Directed Acyclic Graph operations for pattern matching
+- Purpose: Handles Directed Acyclic Graph for pattern matching
 
 - Key functions:
 
