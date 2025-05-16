@@ -31,7 +31,7 @@ Gopher is an efficient dynamic graph pattern mining system that uses DAG-driven 
 
 - Core class: `Schedule`
 
-- Purpose: Generates schedules for each mapping instance
+- Purpose: Generates schedules for mapping instances
 
 - Key functions:
   - `generate_schedules()`: Generates valid schedules
