@@ -1,4 +1,4 @@
-# Gopher: Efficient Dynamic Graph Pattern Mining System via DAG-Driven Execution
+# Gopher: Efficient Dynamic Graph Pattern Mining via DAG-Driven Execution
 ## Project Overview
 
 Gopher is an efficient dynamic graph pattern mining system that uses DAG-driven execution to find matches in dynamic graphs.
